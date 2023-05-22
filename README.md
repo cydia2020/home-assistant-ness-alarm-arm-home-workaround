@@ -19,9 +19,9 @@ My setup is a bit more janky and complicated as I am relaying Blue Iris's alerts
 
 For this section, you will need your alarm panel's master code and installer code. If you do not have these, follow the "How to enter Program Mode" on page 13 of the alarm's manual.
 
-To enter installer program mode with both codes, use P**masterCode**E, followed by "P**installerCode**E".
+To enter installer program mode with both codes, use "P**masterCode**E", followed by "P**installerCode**E".
 
-For example: If your master code is 1234, and your installer code is 987654, you will enter P1234E, then followed by P987654E to access installer program mode.
+For example: If your master code is 1234, and your installer code is 987654, you will enter "P1234E", then followed by "P987654E" to access installer program mode.
 
 Once you are in the Installer Programming Mode:
 1. Press P142E on the alarm's keypad, then followed by 1E (this will trigger the alarm's AUX2 output when the alarm's zone 1 is armed).
