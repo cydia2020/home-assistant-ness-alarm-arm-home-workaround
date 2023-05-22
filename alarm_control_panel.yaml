@@ -1,0 +1,47 @@
+alarm_control_panel:
+  - platform: template
+    panels:
+      frontend_alarm_panel:
+        unique_id: alarm_control_panel.frontend_alarm_panel
+        # original panel's states should have higher priority in the if statement
+        # otherwise there will be a race condition
+        # please change the entity IDs to suit your needs
+        value_template: >-
+          {% if is_state('alarm_control_panel.alarm_panel', 'arming') %}
+            arming
+          {% elif is_state('alarm_control_panel.alarm_panel', 'triggered') %}
+            triggered
+          {% elif is_state('alarm_control_panel.alarm_panel', 'pending') %}
+            pending
+          {% elif is_state('binary_sensor.cctv_alarm_bridge_aux_3', 'on') %}
+            armed_home
+          {% elif is_state('binary_sensor.cctv_alarm_bridge_aux_2', 'on') %}
+            armed_away
+          {% elif is_state('alarm_control_panel.alarm_panel', 'unavailable') or
+                is_state('binary_sensor.cctv_alarm_bridge_aux_2', 'unavailable') or
+                is_state('binary_sensor.cctv_alarm_bridge_aux_3', 'unavailable') %}
+            unavailable
+          {% else %}
+            disarmed
+          {% endif %}
+        code_format: no_code 
+        arm_away:
+          service: alarm_control_panel.alarm_arm_away
+          data:
+            entity_id: alarm_control_panel.alarm_panel # change this to suit your needs
+            code: 1234 # change this to suit your needs
+        arm_home:
+          service: alarm_control_panel.alarm_arm_home
+          data:
+            entity_id: alarm_control_panel.alarm_panel
+            code: 1234 
+        disarm:
+          service: alarm_control_panel.alarm_disarm
+          data:
+            entity_id: alarm_control_panel.alarm_panel
+            code: 1234
+        trigger:
+          service: alarm_control_panel.trigger
+          data:
+            entity_id: alarm_control_panel.alarm_panel
+            code: 1234
