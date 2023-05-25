@@ -36,6 +36,11 @@ web_server:
   ota: False
   local: True
 
+# binary sensors for the alarm panel's aux output
+# In this instance, aux 1 should not be connected to anything that may survive a
+# power loss as it could potentially inadvertently put the ESP8266 into boot mode
+# aux 2 and aux 3 has a 5 seconds delay to avoid race condition with the ness integration
+# change the PIN definition / on delay time to suit your needs
 binary_sensor:
   # Aux 1, unused for now
   - platform: gpio
@@ -54,6 +59,8 @@ binary_sensor:
       inverted: True
     id: aux2
     name: "Aux 2"
+    filters:
+      delayed_on: 5s
 
   # Aux 3, Armed Home
   - platform: gpio
@@ -63,8 +70,10 @@ binary_sensor:
       inverted: True
     id: aux3
     name: "Aux 3"
+    filters:
+      delayed_on: 5s
 
-  # Aux 4, unused for now
+  # Aux 4
   - platform: gpio
     pin:
       number: GPIO14
