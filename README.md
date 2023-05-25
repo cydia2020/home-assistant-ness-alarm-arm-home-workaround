@@ -38,7 +38,3 @@ I used ESPHome as it's easy to set up and update. Feel free to use whatever suit
 ## Home Assistant Template Alarm Configuration
 
 A template alarm works great in this situation; however, you do lose the ability to disarm with your code in the Home Assistant frontend. It shouldn't matter too much in this case nonetheless. My configuration has also been included in this repository for your reference.
-
-## Known Issues
-1. On arming, the status of the alarm control panel will briefly change to "Armed Home/Away" before changing to "Arming", this can probably be solved by setting a turn on delay that matches the exit time of the alarm on the ESP8266. Alternatively, a delay can be programmed into the AUX outputs, however this can only be applied to Armed Away.
-
