@@ -9,7 +9,10 @@ alarm_control_panel:
         value_template: >-
           {% if is_state('alarm_control_panel.alarm_panel', 'arming') %}
             arming
-          {% elif is_state('alarm_control_panel.alarm_panel', 'triggered') %}
+          # Home Assistant's integration only shows the triggered state very briefly
+          # a triggered loop based on the state of the frontend panel can mitigate this
+          {% elif is_state('alarm_control_panel.alarm_panel', 'triggered') or
+                  is_state('alarm_control_panel.frontend_alarm_panel', 'triggered') %}
             triggered
           {% elif is_state('alarm_control_panel.alarm_panel', 'pending') %}
             pending
